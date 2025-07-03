@@ -85,22 +85,6 @@ export function MonthlyTrendsChart({ refreshTrigger, showBalance }: MonthlyTrend
     }
     return null
   }
-  const getPeriodLabel = () => {
-    switch (selectedPeriod) {
-      case "all":
-        return "Menampilkan semua data"
-      case "3":
-        return "Menampilkan 3 bulan terakhir"
-      case "6":
-        return "Menampilkan 6 bulan terakhir"
-      case "12":
-        return "Menampilkan 12 bulan terakhir"
-      case "24":
-        return "Menampilkan 24 bulan terakhir"
-      default:
-        return `Menampilkan ${selectedPeriod} bulan terakhir`
-    }
-  }
 
   if (isLoading) {
     return (

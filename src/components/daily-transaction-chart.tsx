@@ -9,11 +9,23 @@ import { id } from "date-fns/locale"
 import { api } from "@/lib/api"
 import { formatCurrency } from "@/lib/currency"
 import { DailyReportModal } from "./daily-report-modal"
-import type { DailyData, DailyStats } from "@/types"
+import type { DailyData, DailyStats, Transaction, CategoryStats } from "@/types"
 
 interface DailyTransactionChartProps {
   refreshTrigger: number
   showBalance: boolean
+}
+
+interface DailyDTO {
+  date: string
+  transactions: Transaction[]
+  categoryStats: CategoryStats[]
+  summary: {
+    totalIncome: number
+    totalExpense: number
+    balance: number
+    transactionCount: number
+  }
 }
 
 export function DailyTransactionChart({ refreshTrigger, showBalance }: DailyTransactionChartProps) {
@@ -22,7 +34,19 @@ export function DailyTransactionChart({ refreshTrigger, showBalance }: DailyTran
   const [isLoading, setIsLoading] = useState(false)
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
   const [selectedType, setSelectedType] = useState<"income" | "expense" | "all">("all")
-  const [dailyReport, setDailyReport] = useState<any>(null)
+  const [dailyReport, setDailyReport] = useState<DailyDTO>(
+    {
+      date: "",
+      transactions: [],
+      categoryStats: [],
+      summary: {
+        totalIncome: 0,
+        totalExpense: 0,
+        balance: 0,
+        transactionCount: 0,
+      },
+    } as DailyDTO
+  )
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {

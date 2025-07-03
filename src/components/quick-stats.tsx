@@ -1,9 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { TrendingUp, TrendingDown, DollarSign } from "lucide-react"
+import { TrendingUp, TrendingDown} from "lucide-react"
 import { api } from "@/lib/api"
-import { formatCurrency } from "@/lib/currency"
 import { format } from "date-fns"
 
 interface QuickStatsProps {

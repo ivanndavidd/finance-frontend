@@ -19,6 +19,12 @@ interface TransactionListProps {
   showBalance: boolean
 }
 
+interface FilterProps {
+  category: string
+  type: string
+  month: string
+}
+
 export function TransactionList({ refreshTrigger, onDataChange, showBalance}: TransactionListProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([])
   const [categories, setCategories] = useState<Category[]>([])
@@ -42,7 +48,11 @@ export function TransactionList({ refreshTrigger, onDataChange, showBalance}: Tr
   const loadTransactions = async () => {
     setIsLoading(true)
     try {
-      const apiFilters: any = {}
+      const apiFilters: FilterProps = {
+        category: '',
+        type: '',
+        month: '',
+      }
 
       if (filters.category !== "all") {
         apiFilters.category = filters.category
