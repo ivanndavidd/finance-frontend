@@ -17,15 +17,12 @@ export function MonthlyRecapCard({
   refreshTrigger,
   showBalance,
 }: MonthlyRecapCardProps) {
-  const [selectedMonth, setSelectedMonth] = useState(
-    format(new Date(), "yyyy-MM")
-  );
   const [recap, setRecap] = useState<DailyReport | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   loadRecap();
-  // }, [selectedMonth, refreshTrigger]);
+  useEffect(() => {
+    loadRecap();
+  }, [refreshTrigger]);
 
   const loadRecap = async () => {
     setIsLoading(true);
