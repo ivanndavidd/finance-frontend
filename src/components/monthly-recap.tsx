@@ -2,13 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { TrendingUp, TrendingDown, DollarSign } from "lucide-react";
 import { format } from "date-fns";
 import { api } from "@/lib/api";
@@ -30,9 +23,9 @@ export function MonthlyRecapCard({
   const [recap, setRecap] = useState<DailyReport | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    loadRecap();
-  }, [selectedMonth, refreshTrigger]);
+  // useEffect(() => {
+  //   loadRecap();
+  // }, [selectedMonth, refreshTrigger]);
 
   const loadRecap = async () => {
     setIsLoading(true);
@@ -51,23 +44,23 @@ export function MonthlyRecapCard({
     return showBalance ? formatCurrency(amount) : "Rp.••••••";
   };
 
-  const generateMonthOptions = () => {
-    const options = [];
-    const currentDate = new Date();
+  // const generateMonthOptions = () => {
+  //   const options = [];
+  //   const currentDate = new Date();
 
-    for (let i = 0; i < 12; i++) {
-      const date = new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth() - i,
-        1
-      );
-      const value = format(date, "yyyy-MM");
-      const label = format(date, "MMMM yyyy");
-      options.push({ value, label });
-    }
+  //   for (let i = 0; i < 12; i++) {
+  //     const date = new Date(
+  //       currentDate.getFullYear(),
+  //       currentDate.getMonth() - i,
+  //       1
+  //     );
+  //     const value = format(date, "yyyy-MM");
+  //     const label = format(date, "MMMM yyyy");
+  //     options.push({ value, label });
+  //   }
 
-    return options;
-  };
+  //   return options;
+  // };
 
   if (isLoading) {
     return (
