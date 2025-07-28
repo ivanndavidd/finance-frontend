@@ -129,15 +129,17 @@ export function MonthlyRecapCard({
                 <p className="text-sm font-medium text-blue-600">Saldo</p>
                 <p
                   className={`text-2xl font-bold ${
-                    recap.summary.balance >= 0
+                    130000 - recap.summary.totalExpense >= 0
                       ? "text-blue-700"
                       : "text-red-700"
                   }`}
                 >
-                  {formatAmount(recap.summary.balance)}
+                  {formatAmount(130000 - recap.summary.totalExpense)}
                 </p>
                 <p className="text-xs text-blue-600">
-                  {recap.summary.balance >= 0 ? "Surplus" : "Defisit"}
+                  {130000 - recap.summary.totalExpense >= 0
+                    ? "Surplus"
+                    : "Defisit"}
                 </p>
               </div>
             </div>
